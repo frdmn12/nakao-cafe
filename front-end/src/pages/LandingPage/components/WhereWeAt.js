@@ -3,7 +3,7 @@ import { StoreList } from "../../../variables/general";
 
 export const WhereWeAt = () => {
   return (
-    <div >
+    <div>
       <div className="flex gap-24 p-10">
         <h1 className="text-7xl font-medium">Where We At</h1>
         <div className="w-96">
@@ -12,15 +12,24 @@ export const WhereWeAt = () => {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-1 mt-8">
+      <div className="grid grid-cols-2 my-5">
         {StoreList.map((store) => {
           return (
-            <div className="flex flex-col gap-1">
-              <img
-                src={store.image}
-                alt={store.location_name}
-                className="w-full h-80 object-cover"
-              />
+            <div
+              className="flex flex-col justify-end gap-1 p-4 hover:opacity-75"
+              style={{
+                backgroundImage: `url(${store.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                height: "300px",
+                width: "100%",
+              }}
+            >
+              <h1>
+                <span className="text-3xl font-medium text-gray-100 bg-opacity-50">
+                  {store.location_name}
+                </span>
+              </h1>
             </div>
           );
         })}

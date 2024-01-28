@@ -1,3 +1,9 @@
+import nakoaDinoyo from "../assets/img/nakoa-dinoyo.jpg";
+import nakoaBondowoso from "../assets/img/nakoa-bondowoso.jpg";
+import nakoaSuhat from "../assets/img/nakoa-suhat.jpg";
+import nakoaPanjaitan from "../assets/img/nakoa-panjaitan.jpeg";
+
+
 export const TopsSaleListProduct = [
   {
     title: "Americano",
@@ -19,22 +25,22 @@ export const TopsSaleListProduct = [
 export const StoreList = [
   {
     location_name: "Bondowoso",
-    image: 'https://lh3.googleusercontent.com/p/AF1QipMSPHw0MsYAESJowdbOLfCsHfFUGwlaR_hLfjnw=s680-w680-h510',
+    image: `${nakoaBondowoso}`,
     google_maps: 'https://goo.'
   },
   {
     location_name: "Dinoyo",
-    image: 'https://lh3.googleusercontent.com/p/AF1QipNoj-T411ec_7iWIwQxk0B83nsCiAaophQ_7w0v=s680-w680-h510',
+    image: `${nakoaDinoyo}`,
     google_maps: 'https://goo.'
   },
   {
     location_name: "Suhat",
-    image: 'https://lh3.googleusercontent.com/p/AF1QipOSbMqoA7Pm0VG8CSjCX5Q-VQec7uCDKuwrQD4d=s680-w680-h510',
+    image: `${nakoaSuhat}`,
     google_maps: 'https://goo.'
   },
   {
     location_name: "Panjaitan",
-    image: 'https://lh3.googleusercontent.com/p/AF1QipN8_7G-1VJgiQotf5XfI2rN9Ly0qtUTIroNzEXr=s680-w680-h510',
+    image: `${nakoaPanjaitan}`,
     google_maps: 'https://goo.'
   },
 ];
