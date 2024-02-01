@@ -8,7 +8,7 @@ export const router =  createBrowserRouter([
         Component : LandingPage
     },
     {
-        path : "/product",
+        path : "/products",
         Component : ProductPage
     },
 ])

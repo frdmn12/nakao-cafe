@@ -1,7 +1,27 @@
 import React from "react";
 import { TopsSaleListProduct } from "../../../variables/general";
+import { Link } from "react-router-dom";
 
 export const TopSale = () => {
+  const categoryList = [
+    "Espresso",
+    "Seasonal",
+    "Non-Coffe",
+    "Tea",
+    "Cake",
+    "Bread",
+  ];
+
+  const displayCategory = categoryList.map((category) => {
+    return (
+      <button
+        type="button"
+        className="text-md border-2 border-gray-900 rounded-2xl p-3 hover:bg-slate-100"
+      >
+        {category}
+      </button>
+    );
+  });
   return (
     <div className="my-5 p-10">
       <div className="flex flex-row justify-between gap-1">
@@ -12,48 +32,13 @@ export const TopSale = () => {
             Shop now and experience the best quality and taste.
           </p>
         </div>
-        <button className="border-2 border-gray-900 hover:bg-slate-100  p-3 rounded-full">
-          View All Products
-        </button>
+        <Link to={"/products"}>
+          <button className="border-2 border-gray-900 hover:bg-slate-100  p-3 rounded-full">
+            View All Products
+          </button>
+        </Link>
       </div>
-      <div className="flex gap-4 my-4">
-        <button
-          type="button"
-          className="text-md border-2 border-gray-900 rounded-2xl p-3 hover:bg-slate-100"
-        >
-          Espresso
-        </button>
-        <button
-          type="button"
-          className="text-md border-2 border-gray-900 rounded-2xl p-3 hover:bg-slate-100"
-        >
-          Seasonal
-        </button>
-        <button
-          type="button"
-          className="text-md border-2 border-gray-900 rounded-2xl p-3 hover:bg-slate-100"
-        >
-          Non-Coffe
-        </button>
-        <button
-          type="button"
-          className="text-md border-2 border-gray-900 rounded-2xl p-3 hover:bg-slate-100"
-        >
-          Tea
-        </button>
-        <button
-          type="button"
-          className="text-md border-2 border-gray-900 rounded-2xl p-3 hover:bg-slate-100"
-        >
-          Cake
-        </button>
-        <button
-          type="button"
-          className="text-md border-2 border-gray-900 rounded-2xl p-3 hover:bg-slate-100"
-        >
-          Bread
-        </button>
-      </div>
+      <div className="flex gap-4 my-4">{displayCategory}</div>
       <div className="flex my-10 gap-6 justify-evenly">
         {TopsSaleListProduct.map((product) => {
           return (
