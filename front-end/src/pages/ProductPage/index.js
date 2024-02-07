@@ -9,8 +9,7 @@ export default function ProductPage() {
     backgroundImage: "linear-gradient(45deg, #fefeff 0%, #000000 100%)",
   };
 
-//   background-color: #fefeff;
-// background-image: linear-gradient(45deg, #fefeff 0%, #000000 100%);
+
 
 
   const categoryList = ["Espresso", "Seasonal", "Non-Coffe", "Tea"];

@@ -1,30 +1,39 @@
-const createError = require("http-errors");
 const express = require("express");
-const cors = require("cors");
 const app = express();
-const { productRouter, userRouter } = require("./routers");
-const bodyParser = require("body-parser");
+const cors = require("cors");
+const { productRouter, userRouter } = require("./routes");
+const morgan = require("morgan")
 
 app.use(cors());
 app.use(express.json());
-// app.use(bodyParser);
+app.use(morgan('dev'))
 
-const port = 8000;
+const port = 3001;
 
+
+// Base request api
 app.get("/", (req, res) => {
   res.send("BackEnd Nakoa Coffe Shop");
 });
 
+// Routers
 app.use("/products", productRouter);
 app.use("/users", userRouter);
 
-// Handling Errors
-app.use((err, req, res) => {
-  err.statusCode = err.statusCode || 500;
-  err.message = err.message || "Internal Server Error";
-  res.status(err.statusCode).json({ message: err.message });
+
+// Listening request
+app.use((req, res, next) => {
+  console.log("new request made:");
+  console.log("host: ", req.hostname);
+  console.log("path: ", req.path);
+  console.log("method: ", req.method);
+  next();
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(port, (err) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log(`Server running on port ${port}`);
+  }
 });

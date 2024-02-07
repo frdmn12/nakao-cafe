@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../api");
+const db = require("../config");
 const {
   validateSignupRequest,
   validateSigninRequest,
-} = require("../middleware/validator");
+} = require("../handlers/validator");
 
 // Sign Up
 router.post("/signup", validateSignupRequest, (req, res) => {
