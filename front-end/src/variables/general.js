@@ -2,6 +2,9 @@ import nakoaDinoyo from "../assets/img/nakoa-dinoyo.jpg";
 import nakoaBondowoso from "../assets/img/nakoa-bondowoso.jpg";
 import nakoaSuhat from "../assets/img/nakoa-suhat.jpg";
 import nakoaPanjaitan from "../assets/img/nakoa-panjaitan.jpeg";
+import avatar1 from "../assets/customer_say/Select Avatar=Female 37.png"
+import avatar2 from "../assets/customer_say/Select Avatar=Male 5.png"
+import avatar3 from "../assets/customer_say/Select Avatar=Male 6.png"
 
 export const TopsSaleListProduct = [
   {
@@ -42,4 +45,26 @@ export const StoreList = [
     image: `${nakoaPanjaitan}`,
     google_maps: "https://maps.app.goo.gl/37AvNExPjAhbcwWs8",
   },
+];
+
+
+export const CustomerSayList = [
+  {
+    name: 'John F',
+    photo: avatar1,
+    job  : 'Software Engineer',
+    desc: "Best place to get my morning coffee!"
+  },
+  {
+    name: 'Emily R',
+    photo: avatar2,
+    job  : 'Designer',
+    desc: "The atmosphere is cozy and the coffee is amazing!"
+  },
+  {
+    name: 'Michael S',
+    photo: avatar3,
+    job  : 'Photographer',
+    desc: "I love the variety of drinks they offer. Highly recommended!"
+  }
 ];
