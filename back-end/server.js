@@ -2,10 +2,12 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const { productRouter, userRouter } = require("./routes");
-const morgan = require("morgan")
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
 
 app.use(cors());
-app.use(express.json());
+// app.use(express.json());
+app.use(bodyParser.json());
 app.use(morgan('dev'))
 
 const port = 3001;

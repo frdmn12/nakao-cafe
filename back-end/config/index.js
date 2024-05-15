@@ -12,4 +12,4 @@ const db = mysql.createConnection({
 
 const query = util.promisify(db.query).bind(db);
 
-module.exports = { db, query };
+module.exports = { query };
