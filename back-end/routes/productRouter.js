@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { productController } = require("../controllers");
+const authenticateJWT = require("../helpers/auth");
+
+// Test Product
+router.get("/book", authenticateJWT, productController.product_books);
 
 // Get All Product
 router.get("/", productController.product_index);

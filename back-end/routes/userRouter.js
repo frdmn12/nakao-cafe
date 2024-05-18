@@ -2,14 +2,13 @@ const express = require("express");
 const router = express.Router();
 const db = require("../config");
 const {
-  validateSignupRequest,
   validateSigninRequest,
-} = require("../handlers/validator");
-const { user_signup, user_signin, test } = require("../controllers/userController");
+  checkRegister,
+  checkLogin,
+} = require("../helpers/validator");
+const { userController } = require("../controllers");
 
-
-router.post("/login", user_signin);
-// router.post("/login", (req, res) => res.send("Login Success"));
-router.post("/register", validateSignupRequest, user_signup);
+router.post("/login", checkLogin, userController.user_signin);
+router.post("/register", checkRegister, userController.user_signup);
 
 module.exports = router;
