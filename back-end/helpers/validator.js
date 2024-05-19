@@ -51,7 +51,7 @@ const checkRegister = [
     const data = await query(checkEmail);
 
     if (data.length > 0) {
-      return res.status(400).json({ message: "Email already exist" });
+      return res.status(400).json({ errors: "Email already exist" });
     }
     next();
   },
