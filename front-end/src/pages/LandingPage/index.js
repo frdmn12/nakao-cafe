@@ -4,6 +4,7 @@ import { TopSale } from "./components/TopSale";
 import { WhereWeAt } from "./components/WhereWeAt";
 import CustomerSay from "./components/CustomerSay";
 import Footer from "../../components/Footer";
+import Slider from "react-slick";
 
 export default function LandingPage() {
   return (
@@ -12,6 +13,7 @@ export default function LandingPage() {
       <TopSale />
       <WhereWeAt />
       <CustomerSay />
+      {/* <AutoPlay /> */}
       <Footer />
     </div>
   );
