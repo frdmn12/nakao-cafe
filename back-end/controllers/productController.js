@@ -38,17 +38,19 @@ const product_books = async (req, res) => {
 // Get All Product
 const product_index = async (req, res) => {
   try {
-    let sql = `select 
-  p.id, 
-  p.name, 
-  p.price, 
-  p.qty, 
-  pc.category_name,
-  pt.type_name
-from products p, product_category pc, product_type pt 
-where p.product_category = pc.id  AND p.product_type = pt.id`;
+    let sql = `SELECT 
+    products.id,
+    products.name,
+    products.price,
+    products.qty,
+    products.description,
+    categories.name 
+    FROM products 
+    JOIN categories ON 
+    products.product_category = categories.id`;
 
     const data = await query(sql);
+    // console.log(data);
     return res.status(200).send(data);
   } catch (err) {
     return res.status(500).send(err.message);
@@ -78,6 +80,7 @@ where
     return res.status(200).send(data);
   } catch (err) {
     return res.status(500).send(err.message);
+    // console.log(err);
   }
 };
 
@@ -138,16 +141,26 @@ const product_drink = async (req, res) => {
 };
 
 // Add Product
-const product_create = async (req, res) => {
+const product_create = async (req, res, next) => {
   try {
-    const { name, price, qty, product_type, product_category } = req.body;
+    const { name, price, qty, product_category, description } = req.body;
 
     const reqBody = req.body;
+    
+    
+    if(!req.file) return res.status(400).send({
+      Status : "Failed",
+      message : "Image Required"
+    });
+    
+    
+    const image = req.file.path;
+    console.log(req.file.path)
     let sql = `
-    insert into products 
-    (name, price, qty, product_type, product_category) 
+    INSERT INTO products 
+    (name, price, description,qty, product_category, image) 
     values
-    ("${name}", ${price}, ${qty}, ${product_type}, ${product_category} )
+    ("${name}", ${price}, "${description}" ,${qty}, ${product_category}, "${image}" )
     `;
 
     let data = await query(sql);
@@ -160,6 +173,8 @@ const product_create = async (req, res) => {
       data,
     };
     return res.status(200).send(insertData);
+
+
   } catch (err) {
     res.status(500).send(err.message);
   }

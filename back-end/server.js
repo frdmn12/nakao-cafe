@@ -4,12 +4,20 @@ const cors = require("cors");
 const { productRouter, userRouter } = require("./routes");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const multer = require("multer");
+const { storage, fileFilter } = require("./helpers/multers");
 
-app.use(cors());
+app.use(cors({
+  origin: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
+
 // app.use(express.json());
 app.use(bodyParser.json());
 app.use(morgan('dev'))
-
+app.use(multer({storage: storage, fileFilter: fileFilter}).single('image'));
 const port = 3001;
 
 

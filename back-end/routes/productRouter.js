@@ -7,7 +7,7 @@ const authenticateJWT = require("../helpers/auth");
 router.get("/book", authenticateJWT, productController.product_books);
 
 // Get All Product
-router.get("/", productController.product_index);
+router.get("/", authenticateJWT,productController.product_index);
 
 // Get Product by Id
 router.get("/:id", productController.product_details);
@@ -19,7 +19,7 @@ router.get("/category/food", productController.product_food);
 router.get("/category/drink", productController.product_drink);
 
 // Create Product
-router.post("/create", productController.product_create);
+router.post("/create" ,productController.product_create);
 
 // Delete Product
 router.delete("/:id", productController.product_delete);
