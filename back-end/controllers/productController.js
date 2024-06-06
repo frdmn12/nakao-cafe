@@ -39,18 +39,18 @@ const product_books = async (req, res) => {
 const product_index = async (req, res) => {
   try {
     let sql = `SELECT 
-    products.id,
-    products.name,
-    products.price,
-    products.qty,
-    products.description,
-    categories.name 
-    FROM products 
-    JOIN categories ON 
-    products.product_category = categories.id`;
+    p.name,
+    p.price,
+    p.description,
+    p.qty,
+    p.image,
+    c.name AS "category"
+    FROM products p
+    JOIN categories c ON 
+    p.product_category = c.id`;
 
     const data = await query(sql);
-    // console.log(data);
+    console.log(data);
     return res.status(200).send(data);
   } catch (err) {
     return res.status(500).send(err.message);
@@ -147,6 +147,9 @@ const product_create = async (req, res, next) => {
 
     const reqBody = req.body;
     
+    // console.log(req.body, req.file.path)
+    // return res.status(200).send('Sukses');
+    
     
     if(!req.file) return res.status(400).send({
       Status : "Failed",
@@ -154,7 +157,7 @@ const product_create = async (req, res, next) => {
     });
     
     
-    const image = req.file.path;
+    const image = req.file.path.replace(/\\/g, '/');
     console.log(req.file.path)
     let sql = `
     INSERT INTO products 

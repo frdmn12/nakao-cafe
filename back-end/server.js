@@ -5,7 +5,6 @@ const { productRouter, userRouter } = require("./routes");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const multer = require("multer");
-const { storage, fileFilter } = require("./helpers/multers");
 
 app.use(cors({
   origin: true,
@@ -17,7 +16,9 @@ app.use(cors({
 // app.use(express.json());
 app.use(bodyParser.json());
 app.use(morgan('dev'))
-app.use(multer({storage: storage, fileFilter: fileFilter}).single('image'));
+app.use(express.static('public'));
+// app.use(express.static(__dirname, 'public'));
+// app.use(multer({storage: storage, fileFilter: fileFilter}).single('image'));
 const port = 3001;
 
 

@@ -13,14 +13,14 @@ export default function Navbar() {
       className={
         location.pathname === "/"
           ? "flex bg-gray-200  backdrop-filter backdrop-blur-lg bg-opacity-30 border-gray-100 justify-between items-center p-3"
-          : "flex bg-gray-200  justify-between items-center p-3"
+          : "flex bg-black  justify-between items-center p-3"
       }
     >
       <div
         className={
           location.pathname === "/"
             ? "text-white text-3xl"
-            : "text-black text-3xl"
+            : "text-white text-3xl"
         }
       >
         <h1>
@@ -31,7 +31,7 @@ export default function Navbar() {
         className={
           location.pathname === "/"
             ? "flex gap-3 items-center text-white"
-            : "flex gap-3 items-center text-black"
+            : "flex gap-3 items-center text-white"
         }
       >
         <li>
