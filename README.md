@@ -1,6 +1,12 @@
 # Nakoa Cafe
 `Status: 🟡On-Going`
 
+Online Website Order for CoffeShop
 
-Website online order dari Cafe Nakoa Kota Malang
+## Preview Website
+<!-- Add Image in here -->
+<div align="center" > 
+<img src="./landing_page.png"
+/>
+</div>
 
