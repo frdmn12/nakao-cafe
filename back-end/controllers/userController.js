@@ -8,8 +8,8 @@ let secretKey = process.env.JWT_SECRET;
 // Sign In User
 const user_signin = async (req, res) => {
   try {
-   const { email, password } = req.body;
-   const encryptedPassword = hashPassword(password);
+    const { email, password } = req.body;
+    const encryptedPassword = hashPassword(password);
 
     // console.log(req.body);
 
@@ -51,14 +51,27 @@ const user_signup = async (req, res) => {
     const encryptedPassword = hashPassword(password);
 
     let sql = `INSERT INTO users (name,email, password) VALUES ("${name}", "${email}", "${encryptedPassword}")`;
-    await query(sql); 
+    await query(sql);
     return res.status(200).send("User successfully registered");
   } catch (err) {
     return res.status(500).send(err.message);
   }
 };
 
+// Logout User
+const user_logout = async (req, res) => {
+  try {
+    // delete token
+    localStorage.removeItem("token");
+    
+    return res.status(200).send("User successfully logged out");
+  } catch (err) {
+    return res.status(500).send("Failed to logout, please try again later");
+  }
+};
+
 module.exports = {
   user_signup,
   user_signin,
+  user_logout,
 };

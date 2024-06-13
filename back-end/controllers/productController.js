@@ -84,19 +84,56 @@ where
   }
 };
 
+// Get product by category
+const product_category = async (req, res) => {
+  try {
+    let category = req.params.category;
+    let sql = `select 
+    p.id, 
+    p.name, 
+    p.price, 
+    p.description, 
+    p.qty, 
+    c.name 
+    from 
+    products p, 
+    categories c 
+    where 
+    p.product_category = c.id AND 
+    c.name = "${category}"`;
+
+    const data = await query(sql);
+
+    let sendData = {
+      category: category,
+      data : {
+        data
+      }
+    };
+
+    return res.status(200).send(sendData);
+  } catch (err) {
+    return res.status(500).send(err.message);
+  }
+}
+
+
 // Get product food
 const product_food = async (req, res) => {
   try {
     let sql = `select 
-    p.id, p.name, 
-    p.price, p.qty, 
-    pc.category_name 
+    p.id, 
+    p.name, 
+    p.price, 
+    p.description, 
+    p.qty, 
+    c.name 
     from 
     products p, 
-    product_category pc 
+    categories c 
     where 
-    p.product_category = pc.id AND 
-    pc.category_name = "Food"`;
+    p.product_category = c.id AND 
+    c.name = "Food"`;
 
     const data = await query(sql);
 
@@ -116,15 +153,18 @@ const product_food = async (req, res) => {
 const product_drink = async (req, res) => {
   try {
     let sql = `select 
-    p.id, p.name, 
-    p.price, p.qty, 
-    pc.category_name 
+    p.id, 
+    p.name, 
+    p.price,
+    p.description, 
+    p.qty, 
+    c.name 
     from 
     products p, 
-    product_category pc 
+    categories c 
     where 
-    p.product_category = pc.id AND 
-    pc.category_name = "Drink"`;
+    p.product_category = c.id AND 
+    c.name = "Drink"`;
 
     const data = await query(sql);
 
@@ -209,4 +249,5 @@ module.exports = {
   product_create,
   product_delete,
   product_books,
+  product_category,
 };

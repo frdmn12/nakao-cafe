@@ -16,11 +16,14 @@ router.get("/", authenticateJWT, productController.product_index);
 // Get Product by Id
 router.get("/:id", productController.product_details);
 
-// Get Product Food
-router.get("/category/food", productController.product_food);
+// Get Product by Category
+router.get("/category/:category", productController.product_category);
 
-// Get Product Drink
-router.get("/category/drink", productController.product_drink);
+// // Get Product Food
+// router.get("/category/food", productController.product_food);
+
+// // Get Product Drink
+// router.get("/category/drink", productController.product_drink);
 
 // Create Product
 router.post(

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const { productRouter, userRouter } = require("./routes");
+const { productRouter, userRouter, cartRouter } = require("./routes");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const multer = require("multer");
@@ -30,6 +30,22 @@ app.get("/", (req, res) => {
 // Routers
 app.use("/products", productRouter);
 app.use("/users", userRouter);
+app.use('/carts', cartRouter);
+
+// this is default in case of unmatched routes
+app.use(function(req, res) {
+  // Invalid request
+        res.status(404).json({
+          error: {
+            'name':'Error',
+            'status':404,
+            'message':'Invalid Request',
+            'statusCode':404,
+            'stack':`http://localhost:${port}/` // 
+          },
+           message: 'Testing!'
+        });
+});
 
 
 // Listening request
