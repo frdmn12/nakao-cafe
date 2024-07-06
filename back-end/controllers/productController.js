@@ -1,40 +1,5 @@
 const { db, query } = require("../config");
 
-const books = [
-  {
-    author: "Chinua Achebe",
-    country: "Nigeria",
-    language: "English",
-    pages: 209,
-    title: "Things Fall Apart",
-    year: 1958,
-  },
-  {
-    author: "Hans Christian Andersen",
-    country: "Denmark",
-    language: "Danish",
-    pages: 784,
-    title: "Fairy tales",
-    year: 1836,
-  },
-  {
-    author: "Dante Alighieri",
-    country: "Italy",
-    language: "Italian",
-    pages: 928,
-    title: "The Divine Comedy",
-    year: 1315,
-  },
-];
-//  Test Book
-const product_books = async (req, res) => {
-  try {
-    return res.status(200).send(books);
-  } catch (err) {
-    return res.status(500).send(err.message);
-  }
-};
-
 // Get All Product
 const product_index = async (req, res) => {
   try {
@@ -93,7 +58,8 @@ const product_category = async (req, res) => {
     p.name, 
     p.price, 
     p.description, 
-    p.qty, 
+    p.qty,
+    p.image, 
     c.name 
     from 
     products p, 
@@ -106,9 +72,7 @@ const product_category = async (req, res) => {
 
     let sendData = {
       category: category,
-      data : {
-        data
-      }
+      data
     };
 
     return res.status(200).send(sendData);
@@ -248,6 +212,5 @@ module.exports = {
   product_drink,
   product_create,
   product_delete,
-  product_books,
   product_category,
 };

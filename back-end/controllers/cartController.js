@@ -5,6 +5,8 @@ const {query} = require('../config');
 const cart_user_id = async (req, res) => {
   try {
     const userId = req.params.userId;
+    // console.log(userId);
+    // userId = stringTo
     
     let sql = `SELECT 
     c.id,

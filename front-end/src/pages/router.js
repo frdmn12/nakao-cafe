@@ -1,8 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import LandingPage from "./LandingPage";
-import ProductPage from "./ProductPage";
-import RegisterPage from "./AuthPage/Register";
-import LoginPage from "./AuthPage/Login";
+import LandingPage from "./LandingPage/LandingPage";
+import ProductPage from "./ProductPage/ProductPage";
+import RegisterPage from "./AuthPage/Register/RegisterPage";
+import LoginPage from "./AuthPage/Login/LoginPage";
+import CartPage from "./CartPage/CartPage";
 
 export const router = createBrowserRouter([
   {
@@ -21,4 +22,8 @@ export const router = createBrowserRouter([
     path: "/login",
     Component: LoginPage,
   },
+  {
+    path : '/cart',
+    Component: CartPage
+  }
 ]);
