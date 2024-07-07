@@ -35,12 +35,12 @@ export default function ProductPage() {
   const displayCategoryFoodList = displayCategory(categoryFoodList);
 
   const displayDrinks = drinks.map((drink) => {
-    console.log(drink)
     const { id, name, qty, price, description, image } = drink;
     const prepareImage = image.replace("public/", `${URL_API}/`);
     return (
       <CardProduct
         key={id}
+        id={id}
         name={name}
         qty={qty}
         price={price}
@@ -54,12 +54,12 @@ export default function ProductPage() {
 
 
   const displayFoods = foods.map((food) => {
-    console.log(food);
     const { id, name, qty, price, description, image } = food;
     const prepareImage = image.replace("public/", `${URL_API}/`);
     return (
       <CardProduct
         key={id}
+        id={id}
         name={name}
         qty={qty}
         price={price}

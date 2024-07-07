@@ -60,7 +60,7 @@ const product_category = async (req, res) => {
     p.description, 
     p.qty,
     p.image, 
-    c.name 
+    c.name as "category"
     from 
     products p, 
     categories c 

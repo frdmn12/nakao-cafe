@@ -35,13 +35,12 @@ export default function Navbar() {
         }
       >
         <li>
-          <Link to={"/products"}>Drinks</Link>
-        </li>
-        <li>
-          <Link to={"/products"}>Food</Link>
+          <Link to={"/products"}>Buy Now</Link>
         </li>
         <button className="border-2 rounded-full p-1.5">
+        <Link to={"/cart"} >
           <FiShoppingBag />
+        </Link>
         </button>
         <button className="border-2 rounded-full p-1.5">
           <FiSearch />
