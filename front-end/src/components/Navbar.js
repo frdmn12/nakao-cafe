@@ -5,7 +5,9 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const location = useLocation();
-  // console.log(location.pathname); // find out the current path
+
+  // create token variable
+  const token = localStorage.getItem("token");
 
   return (
     // <div className="flex bg-gray-200  backdrop-filter backdrop-blur-lg bg-opacity-30 border-gray-100 justify-between items-center p-3">
@@ -46,9 +48,17 @@ export default function Navbar() {
           <FiSearch />
         </button>
         <button className="border-2 rounded-full p-1.5">
-          <Link to={"/register"}>
-            <FiUser />
-          </Link>
+          {
+            token ? (
+              <Link to={"/profile"}>
+                <FiUser />
+              </Link>
+            ) : (
+              <Link to={"/login"}>
+                <FiUser />
+              </Link>
+            )
+          }
         </button>
       </ul>
     </div>

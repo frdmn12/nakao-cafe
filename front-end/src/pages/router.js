@@ -5,6 +5,7 @@ import RegisterPage from "./AuthPage/Register/RegisterPage";
 import LoginPage from "./AuthPage/Login/LoginPage";
 import CartPage from "./CartPage/CartPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -24,11 +25,19 @@ export const router = createBrowserRouter([
     Component: LoginPage,
   },
   {
-    path : '/cart',
-    Component: CartPage
+    path: "/cart",
+    Component: () => (
+      <ProtectedRoute>
+        <CartPage />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/profile",
-    Component: ProfilePage
-  }
+    Component: () => (
+      <ProtectedRoute>
+        <ProfilePage />
+      </ProtectedRoute>
+    ),
+  },
 ]);
