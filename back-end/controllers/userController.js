@@ -70,6 +70,18 @@ const user_logout = async (req, res) => {
   }
 };
 
+const user_id = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    let sql = `SELECT * FROM users WHERE id = ${userId}`;
+    const data = await query(sql);
+    return res.status(200).send(data);
+  } catch (err) {
+    return res.status(500).send(err.message);
+  }
+};
+
+
 module.exports = {
   user_signup,
   user_signin,
