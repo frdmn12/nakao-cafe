@@ -34,6 +34,9 @@ const User = sequelize.define(
     updatedAt: {
       type: DataTypes.DATE,
     },
+    deletedAt: {
+      type: DataTypes.DATE,
+    },
   },
   {
     paranoid: true, // Soft delete

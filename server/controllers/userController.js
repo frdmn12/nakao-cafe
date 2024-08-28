@@ -36,6 +36,34 @@ const signup = async (req, res) => {
   }
 };
 
+// login
+const login = async (req, res) => {
+  const body = req.body;
+
+  try {
+    const user = await User.findOne({ where: { email: body.email } }); // Ubah nama variabel ini
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    const isPasswordMatch = bcrypt.compareSync(body.password, user.password); // Ubah nama variabel ini
+    if (!isPasswordMatch) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    const token = generateToken({
+      id: user.id, // Ubah nama variabel ini
+      email: user.email, // Ubah nama variabel ini
+      role: user.role, // Ubah nama variabel ini
+    });
+    return res.status(200).json({ token: token });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error.message });
+  }
+}
+
 module.exports = {
   signup,
+  login
 };
