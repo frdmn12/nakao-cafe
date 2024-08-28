@@ -14,6 +14,12 @@ const signup = async (req, res) => {
   const body = req.body;
 
   try {
+    // validation apabila email sudah terdaftar
+    const isEmailExist = await User.findOne({ where: { email: body.email } }); // Ubah nama variabel ini
+    if (isEmailExist) {
+      return res.status(400).json({ message: "Email already exist" });
+    }
+    
     const newUser = await User.create({ // Ubah nama variabel ini
       name: body.name,
       email: body.email,
