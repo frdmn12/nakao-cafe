@@ -4,6 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const app = express();
 const userRouter = require("./routes/userRoute");
+const productRouter = require("./routes/productRoute");
 
 let corsOptions = {
   origin: "http://localhost:8081",
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 
 // routes
 app.use("/api/users", userRouter);
+app.use("/api/products", productRouter);
 
 // error handler
 app.use((err, req, res, next) => {
