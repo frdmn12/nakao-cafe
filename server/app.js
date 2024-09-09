@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const app = express();
 const userRouter = require("./routes/userRoute");
 const productRouter = require("./routes/productRoute");
+const path = require("path");
 
 let corsOptions = {
   origin: "http://localhost:8081",
@@ -14,6 +15,7 @@ app.use(cors(corsOptions)); // agar bisa diakses oleh semua domain
 app.use(morgan("dev")); // log request ke console
 app.use(express.json()); // agar bisa membaca json
 app.use(express.urlencoded({ extended: true })); // agar bisa membaca data dari form
+app.use('/public', express.static(path.join(__dirname, 'public'))); // agar bisa mengakses file di folder public
 
 app.get("/", (req, res) => {
   res.json({
