@@ -1,3 +1,4 @@
+// user.js
 "use strict";
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database"); // Pastikan path ini benar
@@ -43,5 +44,10 @@ const User = sequelize.define(
     freezeTableName: true, // Model tableName will be the same as the model name
   }
 );
+
+// Define association manually
+User.associate = (models) => {
+  User.hasMany(models.Cart, { foreignKey: "userId" });
+};
 
 module.exports = User;

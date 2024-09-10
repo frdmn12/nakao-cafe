@@ -1,31 +1,35 @@
-// product.js
+// cart.js
 "use strict";
 const { Model } = require("sequelize");
 const { DataTypes } = require("sequelize");
 const sequelize = require("../../config/database");
 
-const Product = sequelize.define(
-  "products",
+const Cart = sequelize.define(
+  "carts",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      // references: {
+      //   model: "users",
+      //   key: "id",
+      // },
     },
-    description: {
-      type: DataTypes.TEXT,
+    productId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      // references: {
+      //   model: "products",
+      //   key: "id",
+      // }
     },
-    price: {
-      type: DataTypes.DECIMAL,
-      allowNull: false,
-    },
-    image: {
-      type: DataTypes.STRING,
+    quantity: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     createdAt: {
@@ -46,8 +50,9 @@ const Product = sequelize.define(
 );
 
 // Define association manually
-Product.associate = (models) => {
-  Product.hasMany(models.Cart, { foreignKey: "productId" });
+Cart.associate = (models) => {
+  Cart.belongsTo(models.User, { foreignKey: "userId", as: "user" });
+  Cart.belongsTo(models.Product, { foreignKey: "productId", as: "product" });
 };
 
-module.exports = Product;
+module.exports = Cart;

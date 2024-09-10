@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const app = express();
 const userRouter = require("./routes/userRoute");
 const productRouter = require("./routes/productRoute");
+const cartRouter = require("./routes/cartRoute");
 const path = require("path");
 
 let corsOptions = {
@@ -16,6 +17,7 @@ app.use(morgan("dev")); // log request ke console
 app.use(express.json()); // agar bisa membaca json
 app.use(express.urlencoded({ extended: true })); // agar bisa membaca data dari form
 app.use('/public', express.static(path.join(__dirname, 'public'))); // agar bisa mengakses file di folder public
+// app.use('/public', express.static('public'));
 
 app.get("/", (req, res) => {
   res.json({
@@ -26,6 +28,7 @@ app.get("/", (req, res) => {
 // routes
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/carts", cartRouter);
 
 // error handler
 app.use((err, req, res, next) => {
