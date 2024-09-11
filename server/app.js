@@ -3,14 +3,17 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const app = express();
-const userRouter = require("./routes/userRoute");
-const productRouter = require("./routes/productRoute");
-const cartRouter = require("./routes/cartRoute");
 const path = require("path");
 
 let corsOptions = {
   origin: "http://localhost:8081",
 };
+
+// Routes
+const userRouter = require("./routes/userRoute");
+const productRouter = require("./routes/productRoute");
+const cartRouter = require("./routes/cartRoute");
+const orderRouter = require("./routes/orderRoute");
 
 app.use(cors(corsOptions)); // agar bisa diakses oleh semua domain
 app.use(morgan("dev")); // log request ke console
@@ -29,6 +32,7 @@ app.get("/", (req, res) => {
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/carts", cartRouter);
+app.use("/api/orders", orderRouter);
 
 // error handler
 app.use((err, req, res, next) => {
