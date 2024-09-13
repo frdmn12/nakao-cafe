@@ -54,6 +54,8 @@ module.exports = {
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
+        obviously: ["Obviously", "sans-serif"],
+        obviously_extd: ["Obviously-Extd", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

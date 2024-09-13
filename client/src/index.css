@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 
+@font-face {
+  font-family: 'Obviously';
+  src: local('Obviously'), url('./assets/fonts/ObviouslyComp-Bold.otf') format('opentype');
+    
+  font-family: 'Obviously-Extd';
+  src: local('Obviously-Extd'), url('./assets/fonts/ObviouslyExtd-Bold.otf') format('opentype');
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
