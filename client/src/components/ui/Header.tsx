@@ -20,10 +20,14 @@ const Header = () => {
       </ul>
       <ul className="flex justify-between items-center gap-5">
         <li>
-          <HiOutlineUser size={17} style={{ strokeWidth: "3px" }} />
+          <Link to={"/login"}>
+            <HiOutlineUser size={17} style={{ strokeWidth: "3px" }} />
+          </Link>
         </li>
         <li>
-          <HiOutlineShoppingCart size={17} style={{ strokeWidth: "3px" }} />
+          <Link to={"/signup"}>
+            <HiOutlineShoppingCart size={17} style={{ strokeWidth: "3px" }} />
+          </Link>
         </li>
       </ul>
     </nav>
