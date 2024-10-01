@@ -1,8 +1,9 @@
 // import { FaGoogle } from "react-icons/fa6";
+import videoSrc from "../../assets/video/Before the Exam.mp4";
 
 const LoginPage = () => {
   return (
-    <div className="flex items-center justify-center m-32 gap-5 h-[85vh]">
+    <div className="flex items-center justify-center w-full gap-5 h-[100vh] bg-white">
       <section className="flex flex-col items-center gap-4 mx-7 text-center">
         <h1 className="font-bold text-4xl mb-5">Welcome 👋</h1>
         {/* <div className="my-2">
@@ -32,12 +33,30 @@ const LoginPage = () => {
           </button>
         </form>
         <p className="text-gray-400">
-          Don't have an account? <a href="/signup" className="text-gray-700 font-semibold cursor-pointer hover:underline hover:decoration-wavy">Sign up</a>
+          Don't have an account?{" "}
+          <a
+            href="/signup"
+            className="text-gray-700 font-semibold cursor-pointer hover:underline hover:decoration-wavy"
+          >
+            Sign up
+          </a>
         </p>
       </section>
-      {/* <section>
-        <img src="https://via.placeholder.com/500" alt="image" />
-      </section> */}
+      <section className="text-center flex item-center">
+        {/* <img src="https://via.placeholder.com/500" alt="image" /> */}
+        <div className="w-[30rem]">
+          <video
+            autoPlay
+            muted
+            playsInline={true}
+            key={videoSrc}
+            className="pointer-events-none"
+            loop
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+        </div>
+      </section>
     </div>
   );
 };
