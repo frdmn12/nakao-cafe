@@ -1,4 +1,3 @@
-import React from 'react'
 
 const SignUpPage = () => {
   return (
@@ -37,7 +36,7 @@ const SignUpPage = () => {
           </button>
         </form>
         <p className="text-gray-400">
-          Don't have an account? <a href="/signup" className="text-gray-700 font-semibold cursor-pointer hover:underline hover:decoration-wavy">Login</a>
+          Don't have an account? <a href="/login" className="text-gray-700 font-semibold cursor-pointer hover:underline hover:decoration-wavy">Login</a>
         </p>
       </section>
       {/* <section>

@@ -6,7 +6,8 @@ const app = express();
 const path = require("path");
 
 let corsOptions = {
-  origin: "http://localhost:8081",
+  origin: "http://localhost:5173",
+  optionsSuccessStatus: 200, 
 };
 
 // Routes

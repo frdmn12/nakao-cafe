@@ -8,6 +8,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import LoginPage from "./pages/AuthPage/LoginPage";
 import SignUpPage from "./pages/AuthPage/SignUpPage";
+import ProtectedRoute from "./shared/ProtectedRoute";
+import CartPage from "./pages/CartPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +19,15 @@ export const router = createBrowserRouter(
         <Route path="/shop-coffe" element={<ProductPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <CartPage />
+            </ProtectedRoute>
+          }
+        />
       </Route>
     </>
   )

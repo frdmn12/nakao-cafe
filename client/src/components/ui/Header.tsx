@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <nav className="mx-1 my-1 px-7 py-4 rounded-2xl flex justify-around items-center bg-[#DBE2EF]">
-      <a href="/" className="text-2xl font-bold cursor-pointer">
+      <Link to="/" className="text-2xl font-bold cursor-pointer">
         NAKAO
-      </a>
+      </Link>
       <ul className="flex justify-between items-center gap-5">
         <li className="cursor-pointer hover:underline hover:decoration-wavy">
           <Link to={"/shop-coffe"}>Shop Coffe</Link>
@@ -25,7 +25,7 @@ const Header = () => {
           </Link>
         </li>
         <li>
-          <Link to={"/signup"}>
+          <Link to={"/cart"}>
             <HiOutlineShoppingCart size={17} style={{ strokeWidth: "3px" }} />
           </Link>
         </li>
