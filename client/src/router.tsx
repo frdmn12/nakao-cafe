@@ -19,7 +19,6 @@ export const router = createBrowserRouter(
         <Route path="/shop-coffe" element={<ProductPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/login" element={<LoginPage />} />
         <Route
           path="/cart"
           element={

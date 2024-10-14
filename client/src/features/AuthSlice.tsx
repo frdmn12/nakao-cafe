@@ -28,14 +28,34 @@ export const userLogin = createAsyncThunk(
         email: data.email,
         password: data.password,
       });
-      console.log(data);
-      console.log(res.data);
+      // console.log(data);
+      // console.log(res.data);
       return res.data;
     } catch (err: unknown) {
       console.error(err);
     }
   }
 );
+
+export const userSignUp = createAsyncThunk(
+  "auths/userSignUp",
+  async (data: { name: string; email: string; password: string }) => {
+    try {
+      const res = await axios.post(`${API_URL}/api/users/signup`, {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        role: "1",
+      });
+      // console.log(res.data);
+      return res.data;  
+    } catch (err: unknown) {
+      console.error(err);
+    }
+  }
+);
+
+
 
 export const authSlice = createSlice({
   name: "auths",
@@ -67,6 +87,25 @@ export const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
         console.log("Login error:", action.payload);
+      })
+      .addCase(userSignUp.pending, (state) => {
+        state.status = "loading";
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(userSignUp.fulfilled, (state, action) => {
+        state.status = "success";
+        state.loading = false;
+        state.userToken = action.payload.token;
+        state.userInfo = action.payload.userData;
+        state.error = null;
+        console.log("User registered:", action.payload);
+      })
+      .addCase(userSignUp.rejected, (state, action) => {
+        state.status = "failed";
+        state.loading = false;
+        state.error = action.payload as string;
+        console.log("Register error:", action.payload);
       });
   },
 });

@@ -22,6 +22,11 @@ const LoginPage = () => {
   const submitForm = (e: React.FormEvent) => {
     e.preventDefault();
 
+    if(!formData.email || !formData.password) {
+      alert("Please fill in all fields");
+      return;
+    }
+
     // console.log(formData);
     dispatch(
       userLogin({
