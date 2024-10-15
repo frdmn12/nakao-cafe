@@ -1,7 +1,11 @@
 import { HiOutlineUser, HiOutlineShoppingCart } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const userToken = useSelector((state) => state.auths.userToken);
+  
+  
   return (
     <nav className="mx-1 my-1 px-7 py-4 rounded-2xl flex justify-around items-center bg-[#DBE2EF]">
       <Link to="/" className="text-2xl font-bold cursor-pointer">
@@ -20,7 +24,7 @@ const Header = () => {
       </ul>
       <ul className="flex justify-between items-center gap-5">
         <li>
-          <Link to={"/login"}>
+          <Link to={ userToken ?  "/profile" : "/login"}>
             <HiOutlineUser size={17} style={{ strokeWidth: "3px" }} />
           </Link>
         </li>

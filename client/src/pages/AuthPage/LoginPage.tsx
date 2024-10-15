@@ -4,11 +4,12 @@ import { useDispatch } from "react-redux";
 import { userLogin } from "../../features/AuthSlice";
 import { useState } from "react";
 import { AppDispatch } from "../../store";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   // const { loading } = useSelector((state) => state.user);
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -34,6 +35,8 @@ const LoginPage = () => {
         password: formData.password,
       })
     );
+
+    navigate("/");
   };
 
   return (

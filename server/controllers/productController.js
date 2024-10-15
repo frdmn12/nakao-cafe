@@ -43,6 +43,22 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+// get product by id
+const getProductById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findByPk(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    return res.status(200).json({ data: product });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: error.message });
+  }
+}
+
 // update / edit product
 const editProduct = async (req, res) => {
   upload(req, res, async (err) => {
@@ -101,4 +117,5 @@ module.exports = {
   getAllProducts,
   deleteProduct,
   editProduct,
+  getProductById
 };
