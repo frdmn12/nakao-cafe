@@ -62,9 +62,8 @@ const getProductById = async (req, res) => {
 // update / edit product
 const editProduct = async (req, res) => {
   upload(req, res, async (err) => {
-    console.log(req.body);
     const { id } = req.params;
-    const { name, price, description } = req.body;
+    const { name, price, description, loc_origin, stock_qty, weight, roast_level , grind_option  } = req.body;
     const image = req.file ? req.file.path.replace(/\\/g, "/") : null;
     if (err) {
       return res.status(400).json({ error: err });
@@ -79,6 +78,11 @@ const editProduct = async (req, res) => {
         product.price = price;
         product.description = description;
         product.image = image != null ? image : product.image;
+        product.loc_origin = loc_origin;
+        product.stock_qty = stock_qty;
+        product.weight = weight;
+        product.roast_level = roast_level;
+        product.grind_option = grind_option;
 
         await product.save();
         return res

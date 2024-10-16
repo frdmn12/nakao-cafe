@@ -1,3 +1,6 @@
+import { API_URL } from "../../../constant";
+
+
 type ProductCardProps = {
     image: string,
     name: string,
@@ -9,7 +12,8 @@ type ProductCardProps = {
 const ProductCard = ({image, name, caption, active}: ProductCardProps) => {
   // http://localhost:8080/public/images/15102024-102423-ARABICA.png
 
-  const imgSrc = `http://localhost:8080/${image}`;
+  // const imgSrc = `http://localhost:8080/${image}`;
+  const imgSrc = `${API_URL}/${image}`;
 
   // uppercase the first letter of the caption
   caption = caption.charAt(0).toUpperCase() + caption.slice(1);
@@ -23,7 +27,6 @@ const ProductCard = ({image, name, caption, active}: ProductCardProps) => {
         <h1 className="font-bold m-2 text-2xl">{name}</h1>
         <p className="text-sm mb-5">
           {caption}
-          5
         </p>
       </div>
     </div>

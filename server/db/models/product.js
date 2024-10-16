@@ -28,6 +28,21 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    loc_origin: {
+      type: DataTypes.CHAR,
+    },
+    stock_qty: {
+      type: DataTypes.INTEGER,
+    },
+    weight: {
+      type: DataTypes.FLOAT,
+    },
+    roast_level: {
+      type: DataTypes.STRING,
+    },
+    grind_option: {
+      type: DataTypes.STRING,
+    },
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
