@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_URL } from "../constant";
+import { toast } from "react-toastify";
 
 interface AuthState {
   loading: boolean;
@@ -28,11 +29,13 @@ export const userLogin = createAsyncThunk(
         email: data.email,
         password: data.password,
       });
-      // console.log(data);
-      // console.log(res.data);
+      toast.success("Login successful",);
       return res.data;
     } catch (err: unknown) {
-      console.error(err);
+      // console.error(err.response.data.message);
+      const errMessage = err.response.data.message.toString(); 
+      toast.error(errMessage);
+      throw err;
     }
   }
 );
@@ -51,6 +54,8 @@ export const userSignUp = createAsyncThunk(
       return res.data;  
     } catch (err: unknown) {
       console.error(err);
+      toast.error(err.response.data.message);
+      throw err;
     }
   }
 );
@@ -80,13 +85,13 @@ export const authSlice = createSlice({
         state.userToken = action.payload.token;
         state.userInfo = action.payload.userData;
         state.error = null;
-        console.log("User logged in:", action.payload);
+        // console.log("User logged in:", action.payload);
       })
       .addCase(userLogin.rejected, (state, action) => {
         state.status = "failed";
         state.loading = false;
         state.error = action.payload as string;
-        console.log("Login error:", action.payload);
+        // console.log("Login error:", action.payload);
       })
       .addCase(userSignUp.pending, (state) => {
         state.status = "loading";
@@ -99,13 +104,13 @@ export const authSlice = createSlice({
         state.userToken = action.payload.token;
         state.userInfo = action.payload.userData;
         state.error = null;
-        console.log("User registered:", action.payload);
+        // console.log("User registered:", action.payload);
       })
       .addCase(userSignUp.rejected, (state, action) => {
         state.status = "failed";
         state.loading = false;
         state.error = action.payload as string;
-        console.log("Register error:", action.payload);
+        // console.log("Register error:", action.payload);
       });
   },
 });

@@ -5,6 +5,7 @@ import { userLogin } from "../../features/AuthSlice";
 import { useState } from "react";
 import { AppDispatch } from "../../store";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   // const { loading } = useSelector((state) => state.user);
@@ -20,23 +21,28 @@ const LoginPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const submitForm = (e: React.FormEvent) => {
+  const submitForm = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if(!formData.email || !formData.password) {
-      alert("Please fill in all fields");
+      // alert("Please fill in all fields");
+      toast.error("Please fill in all fields", {
+        
+      });
       return;
     }
 
-    // console.log(formData);
-    dispatch(
-      userLogin({
-        email: formData.email,
-        password: formData.password,
-      })
-    );
-
-    navigate("/");
+    try {
+      const result = await dispatch(
+        userLogin({
+          email: formData.email,
+          password: formData.password,
+        })
+      ).unwrap();
+      navigate("/"); // arahkan pengguna ke halaman utama
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (

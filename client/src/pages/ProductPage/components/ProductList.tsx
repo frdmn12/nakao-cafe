@@ -16,14 +16,14 @@ const ProductList = ({handleChangeShow, productList, selectedProduct} : ProductL
     <section className="m-20">
         <div className="flex flex-col gap-16  justify-center hover:cursor-pointer">
           {productList.map((item): any => (
-            <div onClick={() => handleChange(item.id)} key={item.id}>
+            <div onClick={() => handleChange(   item.id)} key={item.id}>
               <ProductCard
                 caption={item.roast_level}
                 image={item.image}
                 name={item.name}
                 active={selectedProduct.id === item.id ? true : false}
               />
-            </div>
+            </div>  
           ))}
         </div>
       </section>

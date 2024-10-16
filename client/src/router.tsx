@@ -9,7 +9,7 @@ import ProductPage from "./pages/ProductPage/ProductPage";
 import LoginPage from "./pages/AuthPage/LoginPage";
 import SignUpPage from "./pages/AuthPage/SignUpPage";
 import ProtectedRoute from "./shared/ProtectedRoute";
-import CartPage from "./pages/CartPage";
+import CartPage from "./pages/CartPage/CartPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 export const router = createBrowserRouter(
