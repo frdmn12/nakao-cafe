@@ -1,7 +1,5 @@
-import ProductCard from "./components/ProductCard";
-import { listProducts } from "../../utils";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
 import { useEffect, useState } from "react";
 import { getProductById, getProducts } from "../../features/ProductSlice";
 import SelectedProduct from "./components/SelectedProduct";

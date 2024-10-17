@@ -1,14 +1,17 @@
 import { useState } from "react";
 import DataTableBase from "../../components/ui/DataTableBase";
+import  {  TableRow } from "react-data-table-component";
 import { listCartProduct } from "../../utils";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const [selectedRows, setSelectedRows] = useState([]);
+  const navigate = useNavigate();
   
   const columns = [
     {
       name: "Product Details",
-      selector: (row) => (
+      selector: (row ) => (
         <div className="flex">
           <img src={row.image} alt={row.name} className="w-20" />
           <div className="text-left flex flex-col justify-center">
@@ -22,6 +25,7 @@ const CartPage = () => {
     {
       name: "Quantity",
       selector: (row) => row.quantity,
+      sortable: false
     },
     {
       name: "Total Price",
@@ -29,16 +33,24 @@ const CartPage = () => {
     },
   ];
 
+
+
   const handleCheckOut = () => {
     console.log("Checkout with selected products: ", selectedRows);
-    // Lakukan logika checkout di sini
+    navigate("/payment");
   };
 
   return (
     <div className="mb-2  p-2">
       <h1 className="font-bold text-4xl mb-2 mt-8 text-center">My Cart</h1>
       <div className="m-9 mt-0 rounded-xl shadow-lg">
-        <DataTableBase columns={columns} data={listCartProduct} title="Cart" onSelectedRowsChange={setSelectedRows} />
+        <DataTableBase 
+        columns={columns} 
+        data={listCartProduct} 
+        title="Cart" 
+        onSelectedRowsChange={setSelectedRows} 
+        isSelectableRows={true}
+        />
       </div>
       <div className="flex justify-around items-start mt-5">
         <div className="">
