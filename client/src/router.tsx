@@ -11,6 +11,7 @@ import SignUpPage from "./pages/AuthPage/SignUpPage";
 import ProtectedRoute from "./shared/ProtectedRoute";
 import CartPage from "./pages/CartPage/CartPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import PaymentPage from "./pages/PaymentPage/PaymentPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,14 @@ export const router = createBrowserRouter(
           element={
             <ProtectedRoute>
               <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/payment" 
+          element={
+            <ProtectedRoute>
+              <PaymentPage />
             </ProtectedRoute>
           }
         />

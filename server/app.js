@@ -4,7 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const app = express();
 const path = require("path");
-
+const {authenticateToken} = require("./middleware/auth");
 let corsOptions = {
   origin: "http://localhost:5173",
   optionsSuccessStatus: 200, 
@@ -27,6 +27,10 @@ app.get("/", (req, res) => {
   res.json({
     message: "Welcome to my nakao API",
   });
+});
+
+app.post('/api/protected-route', authenticateToken, (req, res) => {
+  res.json({ message: 'This is a protected route', user: req.user });
 });
 
 // routes

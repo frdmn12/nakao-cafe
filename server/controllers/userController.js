@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const User = require("../db/models/user");
 
 const generateToken = (payload) => {
-  return jwt.sign({ payload }, process.env.JWT_SECRET_KEY, {
+  return jwt.sign(payload, process.env.JWT_SECRET_KEY, { // Pastikan menggunakan kunci yang sama
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
