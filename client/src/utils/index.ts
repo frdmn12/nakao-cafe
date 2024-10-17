@@ -38,5 +38,39 @@ export const listProducts = [
   },
 ];
 
+// List of cart products
+export const listCartProduct = [
+  {
+    id: 1,
+    name: "Arabica",
+    price: 10,
+    image: Arabica,
+    image2: ArabicaShadow,
+    description: "A smooth and aromatic coffee with a rich flavor.",
+    caption: "smooth",
+    quantity: 2
+  },
+  {
+    id: 2,
+    name: "Robusta",
+    price: 15,
+    image: Robusta,
+    image2: RobustaShadow,
+    description: "A strong and bold coffee with a distinct flavor.",
+    caption: "dark",
+    quantity: 1
+  },
+  {
+    id: 3,
+    name: "Liberica",
+    price: 20,
+    image: Liberica,
+    image2: LibericaShadow,
+    description: "A unique and exotic coffee with a fruity and floral aroma.",
+    caption: "exotic",
+    quantity: 3
+  },
+];
+
 
 
