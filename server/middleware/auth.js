@@ -10,7 +10,7 @@ const authenticateToken = (req, res, next) => {
   jwt.verify(token, process.env.JWT_SECRET_KEY, (err, user) => {
     // Pastikan menggunakan kunci yang sama
     if (err) {
-      console.log(token);
+      // console.log(token);
       return res.status(401).json({
         isAuthenticated: false,
         message: "Invalid token",
