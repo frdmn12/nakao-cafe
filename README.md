@@ -2,7 +2,7 @@
 Online Website Order
 ## Tech Use
 - BE : ExpressJS, Mysql, Sequelize
-- FE : React, Redux 
+- FE : React, Redux, Tailwind
 
 ## Preview Website
 <!-- Add Image in here -->
