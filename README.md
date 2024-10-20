@@ -1,14 +1,13 @@
 # Nakoa Cafe
-`Status: 🟡On-Going`
-
-Online Website Order for CoffeShop
-
-##
+Online Website Order
+## Tech Use
+- BE : ExpressJS, Mysql, Sequelize
+- FE : React, Redux 
 
 ## Preview Website
 <!-- Add Image in here -->
 <div align="center" > 
-<img src="./landing_page.png"
-/>
+<img src="./Nakao_1.png"/>
+<img src="./Nakao_2.png"/>
 </div>
 
