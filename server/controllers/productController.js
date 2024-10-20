@@ -1,6 +1,7 @@
 require("dotenv").config();
 const Product = require("../db/models/product");
 const upload = require("../helper/multerConfig");
+const models = require("../db/models");
 
 // add Product
 const addProduct = async (req, res) => {
@@ -12,7 +13,7 @@ const addProduct = async (req, res) => {
       const image = req.file ? req.file.path.replace(/\\/g, "/") : null;
 
       try {
-        const newProduct = await Product.create({
+        const newProduct = await models.Product.create({
           name,
           description,
           price,
@@ -34,7 +35,7 @@ const addProduct = async (req, res) => {
 // get all products
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.findAll();
+    const products = await models.Product.findAll();
     console.log(products);
     return res.status(200).json({ data: products });
   } catch (error) {
@@ -47,7 +48,7 @@ const getAllProducts = async (req, res) => {
 const getProductById = async (req, res) => {
   const { id } = req.params;
   try {
-    const product = await Product.findByPk(id);
+    const product = await models.Product.findByPk(id);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
@@ -69,7 +70,7 @@ const editProduct = async (req, res) => {
       return res.status(400).json({ error: err });
     } else {
       try {
-        const product = await Product.findByPk(id);
+        const product = await models.Product.findByPk(id);
         if (!product) {
           return res.status(404).json({ message: "Product not found" });
         }
@@ -101,7 +102,7 @@ const deleteProduct = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const product = await Product.findByPk(id);
+    const product = await models.Product.findByPk(id);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }

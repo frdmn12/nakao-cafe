@@ -2,6 +2,7 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../db/models/user");
+const models = require("../db/models");
 
 const generateToken = (payload) => {
   return jwt.sign(payload, process.env.JWT_SECRET_KEY, { // Pastikan menggunakan kunci yang sama
@@ -15,12 +16,12 @@ const signup = async (req, res) => {
 
   try {
     // validation apabila email sudah terdaftar
-    const isEmailExist = await User.findOne({ where: { email: body.email } });
+    const isEmailExist = await models.User.findOne({ where: { email: body.email } });
     if (isEmailExist) {
       return res.status(400).json({ message: "Email already exist" });
     }
 
-    const newUser = await User.create({
+    const newUser = await models.User.create({
       name: body.name,
       email: body.email,
       password: bcrypt.hashSync(body.password, 10),
@@ -47,7 +48,7 @@ const login = async (req, res) => {
   const body = req.body;
 
   try {
-    const user = await User.findOne({ where: { email: body.email } });
+    const user = await models.User.findOne({ where: { email: body.email } });
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
@@ -57,7 +58,7 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    const userData = await User.findOne({
+    const userData = await models.User.findOne({
       where: { email: body.email },
       attributes: { exclude: ["password"] },
     });

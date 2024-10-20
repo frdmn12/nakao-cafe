@@ -53,7 +53,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      User.belongsTo(models.Cart, { foreignKey: "userId" });
+      User.belongsTo(models.Cart, { foreignKey: "id" });
     }
   }
   User.init(
