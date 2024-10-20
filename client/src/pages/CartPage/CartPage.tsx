@@ -13,17 +13,27 @@ const CartPage = () => {
   const userId = useSelector((state: any) => state.auths.userInfo.id);
   const token = useSelector((state: any) => state.auths.userToken);
   const [cartList, setCartList] = useState<any[]>([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     fetchUserCarts();
-    console.log("Cart List: ", cartList);
   }, []);
   
   
   // get all cart by user id
   const fetchUserCarts = async () => {
     const data = await dispatch(listCartProduct({ userId: userId, token: token })).unwrap();
+    console.log("Cart List: ", data.data);
     setCartList(data.data);
+
+    // calculate total price
+    let total = 0;
+    data.data.forEach((item: any) => {
+      total += item.product.price * item.quantity;
+    });
+    setTotalPrice(total);
+    console.log("Total Price: ", total);
+
   }
 
   const handleCheckOut = () => {
@@ -34,8 +44,13 @@ const CartPage = () => {
   return (
     <div className="mb-2  p-2">
       <h1 className="font-bold text-4xl mb-2 mt-8 text-center">My Cart</h1>
-      <CartItemsList setSelectedRows={setSelectedRows} />
-      <CartInfo handleCheckOut={handleCheckOut} />
+      <CartItemsList 
+      setSelectedRows={setSelectedRows} 
+      cartData={cartList}
+      />
+      <CartInfo handleCheckOut={handleCheckOut} 
+      totalPrice={totalPrice}
+      />
     </div>
   );
 };

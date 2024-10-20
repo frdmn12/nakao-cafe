@@ -36,6 +36,7 @@ const ProductPage = () => {
   return (
     <div className="mb-56 flex justify-center gap-5">
         <SelectedProduct
+          id={selectedProduct.id}
           description={selectedProduct.description}
           grind_option={selectedProduct.grind_option}
           image={selectedProduct.image}

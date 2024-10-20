@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { API_URL } from "../../../constant";
-import { div } from "framer-motion/client";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../../store";
+import { addProductToCart } from "../../../features/CartSlice";
 
 type SelectedProductProps = {
+  id: number;
   name: string;
   image: string;
   description: string;
@@ -15,6 +18,7 @@ type SelectedProductProps = {
 };
 
 const SelectedProduct = ({
+  id,
   name,
   image,
   description,
@@ -26,9 +30,24 @@ const SelectedProduct = ({
   grind_option,
 }: SelectedProductProps) => {
   const [qty, setQty] = useState(1);
+  const token = useSelector((state: any) => state.auths.userToken);
+  const userId = useSelector((state: any) => state.auths.userInfo.id);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleAddToCart = (id: number) => {
+    console.log("add to cart", id, qty);
+    dispatch(
+      addProductToCart({
+        userId: userId,
+        productId: id,
+        qty: qty,
+        token: token,
+      })
+    );
+  };
 
   const imgSrc = `${API_URL}/${image}`;
-  // const uppserName = name.toUpperCase();
   return (
     <section className="flex flex-col text-center items-center gap-5 mx-10 w-[30rem]">
       <div className="flex flex-col items-center gap-2">
@@ -39,14 +58,14 @@ const SelectedProduct = ({
       </div>
       <div className="flex gap-1 justify-center items-center">
         <div className="flex items-center gap-2 mx-3">
-        <button
+          <button
             className="px-5 py-2  border-2 border-accent  font-bold text-accent rounded-2xl"
             onClick={() => (qty > 1 ? setQty(qty - 1) : "")}
           >
             -
           </button>
           <p>{qty}</p>
-         
+
           <button
             className="px-5 py-2  border-2 border-accent  font-bold text-accent rounded-2xl"
             onClick={() => setQty(qty + 1)}
@@ -54,7 +73,10 @@ const SelectedProduct = ({
             +
           </button>
         </div>
-        <button className="px-5 py-3 bg-[#3F72AF] font-bold text-white rounded-2xl">
+        <button
+          className="px-5 py-3 bg-[#3F72AF] font-bold text-white rounded-2xl"
+          onClick={() => handleAddToCart(id)}
+        >
           Add to Cart
         </button>
       </div>

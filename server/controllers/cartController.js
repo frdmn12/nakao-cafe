@@ -27,7 +27,7 @@ const getCartByUser = async (req, res) => {
 const addToCart = async (req, res) => {
   const { userId, productId, quantity } = req.body;
   try {
-    const cartoToUpdate = await Cart.findOne({
+    const cartoToUpdate = await models.Cart.findOne({
       where: { userId, productId },
     });
     // console.log(cart);
@@ -41,7 +41,7 @@ const addToCart = async (req, res) => {
         data: cartoToUpdate,
       });
     } else {
-      const newCart = await Cart.create({
+      const newCart = await models.Cart.create({
         userId,
         productId,
         quantity,

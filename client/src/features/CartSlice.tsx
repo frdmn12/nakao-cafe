@@ -22,17 +22,16 @@ const initialState: CartItemState = {
   status: "idle",
 };
 
-
 export const listCartProduct = createAsyncThunk(
   "cart/listCartProduct",
-  async (data: { userId: string, token: string }) => {
+  async (data: { userId: string; token: string }) => {
     try {
       const res = await axios.get(
         `${API_URL}/api/carts/get-cart/${data.userId}`,
         {
           headers: {
             Authorization: `Bearer ${data.token}`,
-          }
+          },
         }
       );
       return res.data;
@@ -47,13 +46,21 @@ export const listCartProduct = createAsyncThunk(
 // add product to cart
 export const addProductToCart = createAsyncThunk(
   "cart/addProductToCart",
-  async (data: { userId: string; productId: string; qty: number }) => {
+  async (data: { userId: string; productId: number; qty: number, token: string }) => {
     try {
-      const res = await axios.post(`${API_URL}/api/cart/add-to-cart`, {
-        userId: data.userId,
-        productId: data.productId,
-        qty: data.qty,
-      });
+      const res = await axios.post(
+        `${API_URL}/api/carts/add-to-cart`,
+        {
+          userId: data.userId,
+          productId: data.productId,
+          quantity: data.qty,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${data.token}`,
+          },
+        }
+      );
       toast("Product Added to Cart", {
         position: "top-right",
         autoClose: 5000,

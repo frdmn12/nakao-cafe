@@ -1,17 +1,28 @@
-import DataTableBase from '../../../components/ui/DataTableBase'
-import { listCartProduct } from '../../../utils';
+import DataTableBase from "../../../components/ui/DataTableBase";
+import { listCartProduct } from "../../../utils";
+import { API_URL } from "../../../constant";
+import { formatRupiah } from "../../../shared/FormatRupiah";
+import { format } from "path";
 
-const CartItemsList = ({setSelectedRows, cartData}) => {
-    
+type CartItemsListProps = {
+  setSelectedRows?: any;
+  cartData: any;
+};
+
+const CartItemsList = ({ setSelectedRows, cartData }: CartItemsListProps) => {
   const columns = [
     {
       name: "Product Details",
-      selector: (row ) => (
+      selector: (row) => (
         <div className="flex">
-          <img src={row.image} alt={row.name} className="w-20" />
+          <img
+            src={`${API_URL}/${row.product.image}`}
+            alt={row.product.name}
+            className="w-20"
+          />
           <div className="text-left flex flex-col justify-center">
-            <p className="font-bold text-lg">{row.name}</p>
-            <p>Price : {row.price}</p>
+            <p className="font-bold text-lg">{row.product.name}</p>
+            <p>Price : {formatRupiah(row.product.price)}</p>
           </div>
         </div>
       ),
@@ -19,26 +30,27 @@ const CartItemsList = ({setSelectedRows, cartData}) => {
     },
     {
       name: "Quantity",
-      selector: (row) => row.quantity,
-      sortable: false
+      selector: (row) => (row ? row.quantity : 0),
+      sortable: false,
     },
     {
       name: "Total Price",
-      selector: (row) => row.price * row.quantity,
+      selector: (row) =>
+        row ? formatRupiah(row.quantity * row.product.price) : 0,
     },
   ];
-    
+
   return (
     <section className="m-9 mt-0 rounded-xl shadow-lg">
-        <DataTableBase 
-        columns={columns} 
-        data={listCartProduct} 
-        title="Cart" 
-        onSelectedRowsChange={setSelectedRows} 
+      <DataTableBase
+        columns={columns}
+        data={cartData ? cartData : listCartProduct}
+        title="Cart"
+        onSelectedRowsChange={setSelectedRows}
         isSelectableRows={true}
-        />
-      </section>
-  )
-}
+      />
+    </section>
+  );
+};
 
-export default CartItemsList
+export default CartItemsList;
