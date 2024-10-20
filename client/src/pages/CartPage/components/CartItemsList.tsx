@@ -1,7 +1,7 @@
 import DataTableBase from '../../../components/ui/DataTableBase'
 import { listCartProduct } from '../../../utils';
 
-const CartItemsList = ({setSelectedRows}) => {
+const CartItemsList = ({setSelectedRows, cartData}) => {
     
   const columns = [
     {

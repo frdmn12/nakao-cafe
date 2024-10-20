@@ -1,14 +1,30 @@
-import { useState } from "react";
-import DataTableBase from "../../components/ui/DataTableBase";
-import { TableRow } from "react-data-table-component";
-import { listCartProduct } from "../../utils";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CartItemsList from "./components/CartItemsList";
 import CartInfo from "./components/CartInfo";
+import { AppDispatch } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { listCartProduct } from "../../features/CartSlice";
 
 const CartPage = () => {
   const [selectedRows, setSelectedRows] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const userId = useSelector((state: any) => state.auths.userInfo.id);
+  const token = useSelector((state: any) => state.auths.userToken);
+  const [cartList, setCartList] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetchUserCarts();
+    console.log("Cart List: ", cartList);
+  }, []);
+  
+  
+  // get all cart by user id
+  const fetchUserCarts = async () => {
+    const data = await dispatch(listCartProduct({ userId: userId, token: token })).unwrap();
+    setCartList(data.data);
+  }
 
   const handleCheckOut = () => {
     console.log("Checkout with selected products: ", selectedRows);

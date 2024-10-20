@@ -1,12 +1,19 @@
 const Cart = require("../db/models/cart");
 const Product = require("../db/models/product");
+const models = require("../db/models");
 
 // get cart by user
 const getCartByUser = async (req, res) => {
   const { userId } = req.params;
   console.log(req.params);
   try {
-    const cart = await Cart.findAll({
+    const cart = await models.Cart.findAll({
+      include: {
+        model: models.Product,
+        as: "product",
+        attributes: ["name", "price", "image"],
+      },
+      attributes: ["id", "quantity"],
       where: { userId },
     });
     return res.status(200).json({ data: cart });
@@ -25,7 +32,7 @@ const addToCart = async (req, res) => {
     });
     // console.log(cart);
     if (cartoToUpdate) {
-      cartoToUpdate.quantity += quantity;      
+      cartoToUpdate.quantity += quantity;
       await cartoToUpdate.save();
 
       return res.status(200).json({
@@ -33,7 +40,6 @@ const addToCart = async (req, res) => {
         message: "Product already in cart, cart updated successfully",
         data: cartoToUpdate,
       });
-
     } else {
       const newCart = await Cart.create({
         userId,
@@ -70,8 +76,7 @@ const updateCart = async (req, res) => {
           message: "Product removed from cart successfully",
         });
       }
-      
-      
+
       cart.quantity = quantity;
       await cart.save();
       return res.status(200).json({
@@ -79,7 +84,6 @@ const updateCart = async (req, res) => {
         message: "Cart updated successfully",
         data: cart,
       });
-
     } else {
       return res.status(404).json({ message: "Cart not found" });
     }
@@ -95,7 +99,7 @@ const removeFromCart = async (req, res) => {
   const cartId = req.params.cartId;
   try {
     const cart = await Cart.findOne({
-      where: { userId, id:cartId },
+      where: { userId, id: cartId },
     });
     if (cart) {
       await cart.destroy();
